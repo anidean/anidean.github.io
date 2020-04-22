@@ -1,7 +1,10 @@
 ---
 layout: post
-title: "A Docker Daemon?  On *My* 1 GB VM?"
+bigimg: /img/dockerlol.png
+title: Using Podman on low Resource VPSs
+subtitle: A Docker Daemon?  On *My* 1 GB VM?
 date: 2019-08-28
+tags: [infrastructure, tools, scripts, docker, podman, vps, vm]
 ---
 
 I've made it a goal in my life to build the leanest possible cloud provider based internet service.  One that is capable of serving up my sites without raping me on bandwidth costs and storage fees.  I believe I've designed it somewhat correctly so I think I'll detail how it's possible piecemeal when I feel like it.  I'm not against owning my own machines but since I've only built one computer in my whole life and never had a career figuring solving hardware issues I'd rather not start now when there's a huge target of private media for everyone, everywhere, any time.  I don't need distractions while devouring my whale, so to speak.
