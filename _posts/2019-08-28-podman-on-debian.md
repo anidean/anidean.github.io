@@ -16,7 +16,7 @@ Part 1
 <li> Run this script on your local machine.  It assumes ubuntu or debian.  If you're running something else them I assume you're advanced or dedicated enough to make it work regardless.  make sure you know what it's doing if you don't trust me.  You really shouldn't trust anyone.  If you need to make it executable just do chmod +x install_podman.sh.  This all might take a while.
 
 install_podman.sh
-<pre>
+```sh
 #!/bin/bash
 sed -i 's/main/main contrib non-free/g' /etc/apt/sources.list
 apt update && apt upgrade -y && \
@@ -176,7 +176,7 @@ tar xcf ~/libpod.tar.gz ./libpod
 #debian thing for kernel namespaces
 echo "kernel.unprivileged_userns_clone=1" >> /etc/sysctl.d/local.conf
 echo "GOOD TO GO."
-</pre>
+```
 
 It installed podman on your local machine and it also copied the tar'd libpod directory to your home directory.  Why?  Because we're sending it to the cloud.
 </li>
@@ -190,7 +190,7 @@ Part 2
 
 <li>Go to your Vultr Account and create a startup script.  Paste the below code in it.  Call it 'setup' then save and go back the products page.</li>
 
-<pre>
+```
 	#!/bin/bash
 	adduser --disabled-password --gecos "" ssh_username;
 	echo "ssh_username:higgybiggyboo" | chpasswd
@@ -205,8 +205,7 @@ Part 2
 	systemctl reload sshd.service
 
 	echo "GOOD TO GO."
-</pre>
-
+```
 That's the bare minimum for a somewhat secure ssh accessible box.  Change the password as well.  You could probably install ufw and lock it down to your ip but this is for learning.
 
 <li>Back at the products page deploy a server anywhere you want.
@@ -217,37 +216,37 @@ That's the bare minimum for a somewhat secure ssh accessible box.  Change the pa
 	Deploy Now.  You're now being charged.  Go faster.</li>
 
 <li>Copy the ip address and SSH into the server when it's running, you'll only have to wait a few seconds.
-<pre>
+```sh
 	ssh ssh_username@123.456.789.012
-</pre>
+```
 </li>
 <li>If the previous step worked Open up a new terminal and scp the 'install_podman.sh' script to the server with the code below.  If not, then figure out why it didn't work.
-<pre>
+```sh
 	scp install_podman.sh ssh_username@123.456.789.012:~/
-</pre>
+```
 </li>
 <li>In your previous terminal become sudo with:
-<pre>
+```sh
 	sudo su
-</pre>
+```
 type in your password.
 </li>
 <li>Run the 'install_podman.sh' and wait for that bitch to Out of Memory Error.  The reason it OOMs is because the go build command is running out of memory like the gluttonous modern day software it is.  Seriously people, get your shit together - 1GB of memory should be enough for anyone to compile code.  We have SSDs, page that shit.  The final product works well so we're still going to use it.  We're not going to fix the OOM error though, that's too technical and we have other things to build.
 </li>
 <li>
 scp that libpod.tar.gz in your home directory on your local machine to the server.  Caution: this step was only tested between ubuntu and debian. if you're running something else locally then figure out how to cross compile go code or make it in a container or another server or something.
-<pre>
+```sh
 	scp libpod.tar.gz ssh_username@123.456.789.012:~/
-</pre>
+```
 </li>
 
 <li>untar the file, cd into the directory and modify the Makefile to just copy the completed files to the server.
-<pre>
+```sh
 	tar xzf libpod.tar.gz && cd libpod
 	vim Makefile. # or nano or whatever
-</pre>
+```
 Just find these lines:
-<pre>
+```sh
 install.remote: podman-remote
 install.bin: podman
 install.man: docs
@@ -256,23 +255,23 @@ install.completions:
 install.cni:
 install.docker: docker-docs
 install.systemd:
-</pre>
+```
 delete everything to the right of the colon on those lines, i.e. podman-remote, podman, docs, and docker-docs should be removed.  Save and exit.
 </li>
 <li>
 run this, you should still be sudo, if you aren't then prepend sudo the command:
-<pre>
+```sh
 	make install
-</pre>
+```
 </li>
 <li>
 reboot the machine
 </li>
 <li>
 ssh to the machine again and type
-<pre>
+```sh
 	podman pull alpine
-</pre>
+```
 </li>
 </ol>
 If it worked, then congrats you now have a docker replacement on your machine and more ram to use in the future.  You should delete everything in your home directory and snapshot the machine so you never have to do this again.  If you have a more powerful machine then you won't oom and there's no need for these extra copy steps.  Go <a href="https://podman.io/blogs/">here</a> to learn more or type 'man podman' in your terminal.  It's a well built piece of software.
