@@ -13,12 +13,12 @@ In order to make a scalable end to end encrypted messaging service on a bare-bon
 
 When I was learning how usual end to end encrypted systems worked everything seemed in one way or another to boil down to these six actions from which a state in a distributed system can be inferred.  The distributed system I'm talking about consists of the connections between you, me, some rando across the world, our messages and the myriad of interactions between them.  The six actions are:
 
-1. *Create* encryption and signing keys of some kind.
+1. **Create** encryption and signing keys of some kind.
 2. Share your keys in some way
-3. *Sign* a message where you say you know about it in some way.  This creates a signature.
-4. *Verify* a signature by using the signer's public key.  This tells you that the signer is aware of the message in some way.
-5. *Encrypt* a message for an individual using their public key.  This creates an encrypted message.
-6. *Decrypt* a message from an individual using your own private key.  This reveals the original sent message.
+3. **Sign** a message where you say you know about it in some way.  This creates a signature.
+4. **Verify** a signature by using the signer's public key.  This tells you that the signer is aware of the message in some way.
+5. **Encrypt** a message for an individual using their public key.  This creates an encrypted message.
+6. **Decrypt** a message from an individual using your own private key.  This reveals the original sent message.
 
 In order to learn how these libraries worked I made a c++ wrapper using defaults I would want.  Then I made another...then another.  This happened over several months.  Hopefully you'll be able to gain something from my pain.
 
