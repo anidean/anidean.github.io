@@ -20,9 +20,9 @@ When I was learning how usual end to end encrypted systems worked everything see
 5. **Encrypt** a message for an individual using their public key.  This creates an encrypted message.
 6. **Decrypt** a message from an individual using your own private key.  This reveals the original sent message.
 
-In order to learn how these libraries worked I made a c++ wrapper using defaults I would want.  Then I made another...then another.  This happened over several months.  Hopefully you'll be able to gain something from my pain.
+In order to learn how these libraries worked I made a c++ [wrapper](https://gist.github.com/anidean/aaf803fdb68a2bc22994762d74a879d2) using defaults I would want.  Then I made [another](https://gist.github.com/anidean/dc3b4dd75ae6259cfb317c2918950ca0)...then [another](https://github.com/anidean/agginym-cli/blob/master/keyutil.cpp).  This happened over several months.  Hopefully you'll be able to gain something from my pain.
 
-What I found after doing it three times is that all of the libraries accomplish the highlighted steps above.  It doesn't really matter too much which one you use so long as you follow expert advice and use the encryption settings they say you should use.
+What I found after doing it three times is that all of the libraries accomplish the highlighted steps above.  It doesn't really matter too much which one you use so long as you follow expert advice and use the encryption settings they say you should use.  There are lots of them and thankfully [they](https://latacora.micro.blog/) [like](https://www.schneier.com/) [to](https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html) [talk](https://protonmail.com/blog/what-is-pgp-encryption/)!
 
 To that end if you want the fastest cryptography library that takes of some hard stuff like which algorithm to use just use [Libsodium](https://github.com/jedisct1/libsodium).  In my somewhat complicated scenario of chain verification it was about 5x the speed of SequoiaPGP.  I could have been doing many things wrong but there are probably costs associated with maintaining compatibility with PGP. Libsodium has no need to do that.
 
