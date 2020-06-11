@@ -28,7 +28,7 @@ To that end if you want the fastest cryptography library that takes of some hard
 
 It even has a bunch of extra stuff like a [Javascript library](https://github.com/jedisct1/libsodium.js/), general purpose hashing and url safe base64 binary encoding and decoding among other things.  Creature comforts, so to speak.
 
-If you need to interact with GPG systems for some reason, use [SequoiaPGP](https://sequoia-pgp.org/).  It's 2-4 times as fast as synchronous GPGME from my testing.  Other pretty smart people have found results that point in that direction as well https://twitter.com/kristamonster/status/1145633410280566785.  There is an [OpenPGP.js](https://github.com/openpgpjs/openpgpjs) library which is very stable and allows you to work with the web, (extension or native application only, websites are never to be trusted). Keep in mind that you'll have to deal with preventing legacy usage.
+If you need to interact with GPG systems for some reason, use [SequoiaPGP](https://sequoia-pgp.org/).  It's 2-4 times as fast as synchronous GPGME from my testing.  Other [pretty smart people](https://twitter.com/kristamonster/status/1145633410280566785) have found performance results that point in that direction as well.  There is an [OpenPGP.js](https://github.com/openpgpjs/openpgpjs) library which is very stable and allows you to work with the web, (extension or native application only, websites are never to be trusted). Keep in mind that you'll have to deal with preventing legacy usage.
 
 If you want to stick with GNU all the way down, use [GPGME](https://gnupg.org/software/gpgme/index.html).  That's the only reason I can find to stick with it.  You're essentially going to the shell every single time you use a library function.  It kinda slows things down.
 
