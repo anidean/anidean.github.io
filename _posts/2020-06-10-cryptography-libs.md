@@ -1,7 +1,7 @@
 ---
 layout: post
 bigimg: /img/encryptionlibs.png
-title: Cryptography Libraries for Applications
+title: Cryptography Libraries for E2E Server Applications
 subtitle: Some Cryptography libs from the perspective of an application programmer
 date: 2020-06-10
 tags: [encryption, cryptography, libraries, pgp, libsodium, short]
